@@ -335,9 +335,9 @@ def test_relation_data():
 
     state_out = ctx.run(ctx.on.start(), state_in)
 
-    assert state_out.relations[0].local_unit_data == {"abc": "baz!"}
+    assert list(state_out.relations)[0].local_unit_data == {"abc": "baz!"}
     # you can do this to check that there are no other differences:
-    assert state_out.relations == [
+    assert state_out.relations == {
         scenario.Relation(
             endpoint="foo",
             interface="bar",
@@ -345,7 +345,7 @@ def test_relation_data():
             local_unit_data={"abc": "baz!"},
             remote_app_data={"cde": "baz!"},
         ),
-    ]
+    }
 
 # which is very idiomatic and superbly explicit. Noice.
 ```
